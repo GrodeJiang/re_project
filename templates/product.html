@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Web{% endblock %}
+
+{% block page_content %}
+  <div class="page-header">
+    <div class="album py-5 bg-light">
+      <div class="carousel-inner">
+      {% if product_ids %}
+        {% for product_id in product_ids %}
+          <div class="col-md-4">
+            <div class="card" style="height:400px; box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+              <div style='position:relative; top:10px; height:350px'>
+                <img src="{{url_for("image", kind=kind, kind_id=product_id)}}" style='max-width:90%; max-height:95%; display:block; margin:auto; object-fit:contain;'/>
+              </div>
+              <div class="card-body" style='position:relative; left:245px; top:15px;' />   
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Info</button>
+                </div>
+              </div>
+            </div>                
+            <p><br></p>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>Nothing here</p?
+      {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
