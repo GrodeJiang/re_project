@@ -26,13 +26,11 @@ def allowed_file(filename):
 @app.route('/', methods=['GET'])
 def homepage():
     db = Database('Company')
-    kind_ids = []
-    images = []
+    docs = []
     for doc in db.get_all_doc():
-        kind_ids.append(doc['id'])
-        images.append(doc['image'])
+        docs.append(doc)
     return render_template('homepage.html',kind='Company',
-        kind_ids=kind_ids, images=images)
+        docs=docs)
 
 
 @app.route('/image/<kind>/<kind_id>', methods=['GET'])
