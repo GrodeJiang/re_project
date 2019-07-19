@@ -50,17 +50,13 @@ def image(kind, kind_id):
 def product(kind_id):
     db = Database('Product')
     cur = db.get_doc_by_id(key='company_id',kind_id=kind_id)
-    product_ids = []
-    images = []
+    docs = []
     if cur is not None:
         for doc in cur:
-            product_ids.append(doc['id'])
-            images.append(doc['image'])
+            docs.append(doc)
     else:
-        product_ids = None
-        images = None
-    return render_template('product.html',kind='Product',
-        product_ids=product_ids, images=images)
+        docs = None
+    return render_template('product.html',kind='Product',docs=docs)
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_to_database():

@@ -1,58 +1,59 @@
 {% block doc -%}
 <!DOCTYPE html>
- <html {% block html_attribs %}{% endblock html_attribs %}>
- {%- block html %}
- <head>
-  {%- block head %}
-   <title>{% block title %}{{title|default}}{% endblock title %}</title>
-    {%- block metas %}
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {%- endblock metas %}
-    {%- block styles %}
-     <!-- Bootstrap -->
-     <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
-    {%- endblock styles %}
-  {%- endblock head %}
- </head>
- <body{% block body_attribs %}{% endblock body_attribs %}>
- {% block body -%}
-  {% block navbar %}
-  <div class="navbar navbar-inverse" role="navigation">
-   <div class="container">
-    <div class="navbar-header">
-     <a class="navbar-brand" href="/">
-      Web
-     </a>
-    </div>
-    <div class="navbar-collapse collapse">
-     <ul class="nav navbar-nav">
-      <li><a href="/upload">upload</a></li>
-     </ul>
-     <ul class="nav navbar-nav navbar-right">
-     </ul>
-    </div>
-   </div>
-  </div>
-  {%- endblock navbar %}
-  {% block content -%}
-   <div class="container">
-    {% for message in get_flashed_messages() %}
-     <div class="alert alert-warning">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      {{ message }}
-     </div>
-    {% endfor %}
-   </div>
-   <div class="container" tyle="height:100%">
-    {% block page_content %}{% endblock %}
-   </div>
-  {%- endblock content %}
-  {% block scripts %}
-   <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
-   <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
-  {%- endblock scripts %}
- {%- endblock body %}
- </body>
- {%- endblock html %}
- </html>
+  <html {% block html_attribs %}{% endblock html_attribs %}>
+    {%- block html %}
+      <head>
+        {%- block head %}
+          <title>{% block title %}{{title|default}}{% endblock title %}</title>
+          {%- block metas %}
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          {%- endblock metas %}
+          {% block styles %}
+          <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='bootstrap-4.3.1/js/bootstrap.js') }}"></script>
+            <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.3.1/css/bootstrap.css') }}">
+          {% endblock styles %}
+        {%- endblock head %}
+      </head>
+      <body{% block body_attribs %}{% endblock body_attribs %}>
+        {% block body -%}
+          {% block navbar %}
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <a class="navbar-brand" href="/">Web</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/upload">Upload </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          {%- endblock navbar %}
+          {% block content -%}
+            <div class="container">
+              {% for message in get_flashed_messages() %}
+                <div class="alert alert-warning">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+            <div class="container" tyle="height:100%">
+              {% block page_content %}{% endblock %}
+            </div>
+          {%- endblock content %}
+          {% block scripts %}
+            <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+            <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+          {%- endblock scripts %}
+        {%- endblock body %}
+      </body>
+    {%- endblock html %}
+  </html>
 {% endblock doc -%}
