@@ -105,7 +105,6 @@ def upload_to_database():
         else:
             flash('File not allowed')
             return redirect(request.url)
-    print('fail')
     return render_template('upload.html',
         company_form=company_form,product_form=product_form)
 
