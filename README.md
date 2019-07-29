@@ -12,3 +12,7 @@
 首頁第一層跑馬燈  
 第二層圖片展示  
 上傳功能
+
+![preview](https://i.imgur.com/VMJpq9I.png)
+![preview](https://i.imgur.com/S0fhMrR.png)
+![preview](https://i.imgur.com/r3JIUB1.png)
